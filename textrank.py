@@ -63,7 +63,6 @@ class TextRank:
 
     def keywords(self,n=25):
         rank_vector = self.word_rank()
-        np.round(rank_vector, 5, out=rank_vector)
 
         word_array = list(dict.fromkeys(self.tokens))
         sorted_ranks = list(rank_vector)
