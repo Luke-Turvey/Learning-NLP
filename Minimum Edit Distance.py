@@ -23,4 +23,4 @@ def min_edit_distance(string1,string2,del_cost=1,ins_cost=1,sub_cost=1):
 
     return D[n,m]
 
-print(min_edit_distance("intention","execution"))
+print(min_edit_distance("processing","insisting"))
