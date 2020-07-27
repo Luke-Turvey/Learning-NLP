@@ -5,10 +5,22 @@ I worked through the book "Natural Language Processing in Action" whilst learnin
 However, I have also used many of the corpus's supplied by the NLTK library for my own implementation of certain algorithms when a large corpus was needed.
 The code is not as efficient as just using the models pre-built in genism and sklearn but this is because I wanted to program the core of the NLP algorithms myself in order to understand them better. I have used libraries such as sklearn for non-NLP specific data manipulation such as preprocessing.
 
-I have currently created:
-- Textrank for Keyword Extraction
-- Minimum Edit Distance
-- Sentiment Analysis using Naive Bayes
-- TF-IDF Vector Representations (Brown Corpus)
-- SMS Spam Filter using LDA Topic Analysis
+Here is a list of the algorithms/models/pipelines I have included in this repository.
+
+**Keyword Extraction**
+- Textrank
+
+**Sentiment Analysis**
+- Naive Bayes for Movie Review Sentiment Analysis Classifaction(Good/Bad)
+
+**TF-IDF**
+- Created code to compute the TF-IDF vectors for the Brown Corpus without sklearn
+- Used sklearn package to create TF-IDF vectors
+
+**Topic Analysis**
+- Used sklearn PCA to compute Topic Vectors for sms spam data
+- Used Linear Discriminant Analysis (LDA) to classify text into spam/non-spam topics.
+- Used LSA (sklearn SVD) to reduce dimensionality of BOW vector for logistic regression classifier for spam/non-spam sms.
+- Created a plot of text reconstruction error against no. of dimensions eliminated by LSA
+
 
