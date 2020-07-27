@@ -3,6 +3,7 @@ from nlpia.data.loaders import get_data
 from sklearn.feature_extraction.text import TfidfVectorizer
 from nltk.tokenize.casual import casual_tokenize
 from sklearn.preprocessing import MinMaxScaler
+from sklearn.model_selection import train_test_split
 
 sms = get_data('sms-spam')
 index = [f"sms{i}{'!'*j}" for (i, j) in zip(range(len(sms)), sms.spam)]
@@ -14,18 +15,18 @@ sms['spam'] = sms.spam.astype(int)
 tfidf_model = TfidfVectorizer(tokenizer=casual_tokenize)
 tfidf_docs = tfidf_model.fit_transform(raw_documents=sms.text).toarray()
 
-mask = sms.spam.astype(bool).values
-spam_centroid = tfidf_docs[mask].mean(axis=0)
-not_spam_centroid = tfidf_docs[~mask].mean(axis=0)
+X_train, X_test, y_train, y_test = train_test_split(tfidf_docs, sms.spam, test_size=0.4)
+
+mask = y_train.astype(bool).values
+spam_centroid = X_train[mask].mean(axis=0)
+not_spam_centroid = X_train[~mask].mean(axis=0)
 
 spam_line = spam_centroid - not_spam_centroid
-spamminess_score = tfidf_docs.dot(spam_line)
+spamminess_score = X_test.dot(spam_line)
 
-sms['LDA_Score'] = MinMaxScaler().fit_transform(spamminess_score.reshape(-1,1))
-sms['LDA_Predict'] = (sms.LDA_Score > 0.5).astype(int)
+LDA_Score = MinMaxScaler().fit_transform(spamminess_score.reshape(-1,1))
+LDA_Predict = (LDA_Score > 0.5).astype(int)
 
-print(sms[['spam','LDA_Predict','LDA_Score']].head(10))
-
-classifier_score = (1.0 - (sms.spam - sms.LDA_Predict).abs().sum() / len(sms))
+classifier_score = (1.0 - (y_test - LDA_Predict.flatten()).abs().sum() / len(y_test))
 
 print(f"Success Rate: {classifier_score}%")

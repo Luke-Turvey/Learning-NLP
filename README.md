@@ -22,5 +22,11 @@ Here is a list of the algorithms/models/pipelines I have included in this reposi
 - Used Linear Discriminant Analysis (LDA) to classify text into spam/non-spam topics.
 - Used LSA (sklearn SVD) to reduce dimensionality of BOW vector for logistic regression classifier for spam/non-spam sms.
 - Created a plot of text reconstruction error against no. of dimensions eliminated by LSA
+- Used LDiA to reduce dimensionality of BOW data and then LDA to classify text data as spam/not spam
+
+
+
+
+
 
 
