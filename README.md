@@ -1,4 +1,4 @@
-# NLP-Algorithms
+# Learning-NLP
 
 In order to learn the concepts of NLP, I have created this repository to put code I created during my learning process. 
 I worked through the book "Natural Language Processing in Action" whilst learning so I have used lots of text data from the nlpia github especially when applying algorithms to small sets of data.
@@ -25,7 +25,10 @@ Here is a list of the algorithms/models/pipelines I have included in this reposi
 - Used LDiA to reduce dimensionality of BOW data and then LDA to classify text data as spam/not spam
 - Used LSA to reduce dimensionality of BOW data and then LDA to classify text data (this achieved best accuracy)
 
-
+**Word Vectors**
+- I implemented a version of the algorithm to calculate word vectors on a very small corpus. Since the corpus
+is very small, and I just used a regular cost function the word vectors are not particularly useful and later
+I used the word vectors trained by Google on their corpus. However, this was invaluable in understanding how word vectors are actually calculated.
 
 
 
